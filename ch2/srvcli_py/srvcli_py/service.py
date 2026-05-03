@@ -18,10 +18,8 @@ class JointConversionService(Node):
     def joint_conversion_callback(self, request, response):
         
         # Save the input vector of joints into a list
-        j_values = []
-        for i in range( len(request.joint_input) ):
-           j_values.append(request.joint_input[i].data)
-                   
+        j_values = [i.data for i in request.joint_input]
+        
         # Apply the offset
         result = [x + y for x, y in zip(j_values, self.offset)]
         
